@@ -1,4 +1,7 @@
 
+import java.util.ArrayList;
+
+
 
 /**
  * @author  Michael Kolling and David J. Barnes
@@ -8,7 +11,8 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
-    Room swag_city, randers, johnny_bravo, mors_hus, gulddreng, bjarne_riis, diskotekets_dør, diskoteket, sidney_lee, hall_fame, ole_henriksen, michael_jackson; 
+    Room swag_city, randers, johnny_bravo, mors_hus, gulddreng, bjarne_riis, diskotekets_dør, diskoteket, sidney_lee, hall_fame, ole_henriksen, michael_jackson;
+    ArrayList<Swag> inventory = new ArrayList<Swag>();
 /*
     Rooms are placed outside the 'createRooms' method,
     so that we can use the rooms in other methods later.
@@ -71,6 +75,8 @@ public class Game
         sidney_lee.setExit("south", hall_fame);
 
         currentRoom = swag_city;
+        
+        inventory.add(new Swag("Swag håndtegn\n"));
     }
 
     public void play() 
@@ -114,7 +120,7 @@ public class Game
         CommandWord commandWord = command.getCommandWord();
 
         if(commandWord == CommandWord.UNKNOWN) {
-            System.out.println("Æhhh? Hvad fanden?");
+            System.out.println("Æhhh? Hvad fanden?\n");
             return false;
         }
 
@@ -127,6 +133,9 @@ public class Game
         else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
         }
+        else if (commandWord == CommandWord.INVENTORY) {
+            printInventory();
+        }
         return wantToQuit;
     }
 
@@ -136,12 +145,13 @@ public class Game
         System.out.println("Tag dig sammen.");
         System.out.println("Dine råb om hjælp er:");
         parser.showCommands();
+        System.out.println();
     }
 
     private void goRoom(Command command) 
     {
         if(!command.hasSecondWord()) {
-            System.out.println("Hvor vil du hen Erik?");
+            System.out.println("Hvor vil du hen Erik?\n");
             return;
         }
 
@@ -150,7 +160,7 @@ public class Game
         Room nextRoom = currentRoom.getExit(direction);
 
         if (nextRoom == null) {
-            System.out.println("Bum! Du løb ind i en væg, drink noget mindre");
+            System.out.println("Bum! Du løb ind i en væg, drink noget mindre\n");
         }
         else {
             currentRoom = nextRoom;
@@ -161,11 +171,20 @@ public class Game
     private boolean quit(Command command) 
     {
         if(command.hasSecondWord()) {
-            System.out.println("Prøver du at stoppe med at spille!?");
+            System.out.println("Prøver du at stoppe med at spille!?\n");
             return false;
         }
         else {
             return true;
         }
+    }
+
+    private void printInventory() {
+        String output = "";
+        for (int i = 0; i < inventory.size(); i++) {
+            output += inventory.get(i).getSwagDesciption() + " ";
+        }
+        System.out.println("Dine swagting:");
+        System.out.println(output);
     }
 }
