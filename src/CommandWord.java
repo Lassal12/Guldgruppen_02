@@ -6,7 +6,7 @@
  */
 public enum CommandWord
 {
-    GO("go"), QUIT("quit"), HELP("help"), UNKNOWN("?");
+    GO("go"), QUIT("quit"), HELP("help"), UNKNOWN("?"), LOOK("look");
 /*
     æøå understøttes ikke, derfor bruger vi de engelske kommandoer.
 */
