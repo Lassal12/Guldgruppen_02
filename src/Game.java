@@ -33,7 +33,7 @@ public class Game
         gulddreng = new Room("Er du model? kom med på hotel! Du er hos Gulddrengen");
         bjarne_riis = new Room("Så går det stærkt, du er hos Bjarne Riis");
         diskotekets_dør = new Room("Høj lyd af bass, festen venter bag diskotekets dør");
-        diskoteket = new Room("BOOM BOOM WOOP WOOP PARTY PARTY HARDY HARDY");
+        diskoteket = new Room("BOOM BOOM WOOP WOOP PARTY PARTY, du er på diskoteket");
         sidney_lee = new Room("Lugten af selvbruner & foundation fylder lokalet");
         hall_fame = new Room("Du har besejret Sidney Lee, du er en sand cremerider helt");
         ole_henriksen = new Room("Du ser stramme jeans og en tanktop spændt op til lir, totalt fabulous. Hvem mon det er?");
@@ -128,7 +128,7 @@ public class Game
             printHelp();
         }
         else if (commandWord == CommandWord.GO) {
-            goRoom(command);
+            wantToQuit = goRoom(command);
         }
         else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
@@ -148,11 +148,11 @@ public class Game
         System.out.println();
     }
 
-    private void goRoom(Command command) 
+    private boolean goRoom(Command command) 
     {
         if(!command.hasSecondWord()) {
             System.out.println("Hvor vil du hen Erik?\n");
-            return;
+            return false;
         }
 
         String direction = command.getSecondWord();
@@ -165,7 +165,13 @@ public class Game
         else {
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
+            if (currentRoom == hall_fame) {
+                System.out.println("Du er officielt den mest swagste person!");
+                System.out.println("Byen er deres o'høje Erik Deluxe.\n");
+                return true;
+            }
         }
+        return false;
     }
 
     private boolean quit(Command command) 
