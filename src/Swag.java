@@ -6,7 +6,7 @@ class Swag {
         swagDescription = newSwagDescription;
     }
     
-    public String getSwagDesciption() {
+    public String getSwagDescription() {
         return swagDescription;
     }
 }

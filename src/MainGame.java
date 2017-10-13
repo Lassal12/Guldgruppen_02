@@ -18,5 +18,4 @@ public class MainGame {
         Game swag_city = new Game();
         swag_city.play();
     }
-    
 }

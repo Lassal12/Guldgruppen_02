@@ -77,6 +77,12 @@ public class Game
         currentRoom = swag_city;
         
         inventory.add(new Swag("Swag håndtegn\n"));
+        
+        johnny_bravo.setSwag(new Swag("Bravo håret\n"));
+        michael_jackson.setSwag(new Swag("Guld sko\n"));
+        gulddreng.setSwag(new Swag("Guldkæden\n"));
+        bjarne_riis.setSwag(new Swag("Hurtig briller\n"));
+        ole_henriksen.setSwag(new Swag("Fabulous tøj\n"));
     }
 
     public void play() 
@@ -135,7 +141,7 @@ public class Game
         }
 
         else if (commandWord == CommandWord.LOOK) {
-            printLook ();
+            printLook();
         }
         else if (commandWord == CommandWord.INVENTORY) {
             printInventory();
@@ -202,10 +208,8 @@ public class Game
             
         }
         else if (currentRoom == sidney_lee) {
-            
-        }
-        else if (currentRoom == hall_fame) {
-            
+            System.out.println("Sidney Lee står og smørrer sig ind i bruncreme,");
+            System.out.println("han virker klar til en gang dans\n");
         }
     }
 
@@ -249,7 +253,7 @@ public class Game
     private void printInventory() {
         String output = "";
         for (int i = 0; i < inventory.size(); i++) {
-            output += inventory.get(i).getSwagDesciption() + " ";
+            output += inventory.get(i).getSwagDescription() + " ";
         }
         System.out.println("Dine swagting:");
         System.out.println(output);
