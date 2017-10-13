@@ -1,5 +1,6 @@
 
 
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -13,6 +14,7 @@ public class Room
 {
     private String description;
     private HashMap<String, Room> exits;
+    ArrayList<Swag> Swags = new ArrayList<Swag>();
 
     public Room(String description) 
     {
@@ -49,5 +51,25 @@ public class Room
     {
         return exits.get(direction);
     }
-}
+     public Swag getSwag(int index){
+            return Swags.get(index);
+    }
+    /*
+    Set a specific item in a room   
+    */
+    public void setSwag(Swag newSwag){
+       Swag.add(newSwag);
+    }
+    /*
+    Writing description of an item in a room
+    */
+    public String getRoomSwags() {
+        String output = "";
+        for (int i = 0; i < Swags.size(); i++) {
+            output += Swags.get(i).getSwagDescription() + " ";
+        }
+             return output;
+        }
+    }
+
 
