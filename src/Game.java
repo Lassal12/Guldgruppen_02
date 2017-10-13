@@ -11,13 +11,14 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
+    /*
+    Rooms placere vi udenfor 'createRoom' metoden,
+    således vi kan tilgå rummene i andre metoder senere.
+    fx drop/pickup metoder.
+    */
     Room swag_city, randers, johnny_bravo, mors_hus, gulddreng, bjarne_riis, diskotekets_dør, diskoteket, sidney_lee, hall_fame, ole_henriksen, michael_jackson;
+    //Vi opretter en ArrayList til at indeholde vores ting som ligger i inventory.
     ArrayList<Swag> inventory = new ArrayList<Swag>();
-/*
-    Rooms are placed outside the 'createRooms' method,
-    so that we can use the rooms in other methods later.
-    e.g. drop/pickup methods.
-*/
         
     public Game() 
     {
@@ -78,6 +79,7 @@ public class Game
         
         inventory.add(new Swag("Swag håndtegn\n"));
         
+        //Swag tingene indsættes i de forskellige rum.
         johnny_bravo.setSwag(new Swag("Bravo håret\n"));
         michael_jackson.setSwag(new Swag("Guld sko\n"));
         gulddreng.setSwag(new Swag("Guldkæden\n"));
@@ -99,6 +101,7 @@ public class Game
 
     private void printWelcome()
     {
+        //Intro til spillet
         System.out.println("Velkommen til Swag City!");
         System.out.println("Byen hvor drenge bliver til mænd... eller noget.");
         System.out.println("\n   ----- Introduktion til spillet -----   \n");
@@ -129,7 +132,7 @@ public class Game
             System.out.println("Æhhh? Hvad fanden?\n");
             return false;
         }
-
+        //Kommandoer som bruges til at spille spillet.
         if (commandWord == CommandWord.HELP) {
             printHelp();
         }
@@ -139,13 +142,11 @@ public class Game
         else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
         }
-
         else if (commandWord == CommandWord.LOOK) {
             printLook();
         }
         else if (commandWord == CommandWord.INVENTORY) {
             printInventory();
-
         }
         return wantToQuit;
     }
@@ -161,6 +162,7 @@ public class Game
     
     private void printLook()
     {
+        //Metode til at inspicere et rum.
         if (currentRoom == swag_city) {
             System.out.println("Du ser en shady type hænge ud ved byskiltet");
             System.out.println("Der ligger et par mønter på vejen\n");
@@ -199,13 +201,11 @@ public class Game
         else if (currentRoom == bjarne_riis) {
             System.out.println("Du er ude på landet. Det eneste, du kan se er Bjarne Riis' skygge");
             System.out.println("Resten af manden er allerede langt over alle bakker\n");
-            
         }
         else if (currentRoom == diskoteket) {
             System.out.println("Der er fuckboys og duller galore");
             System.out.println("Der sidder en lækker lille sag oppe ved baren, måske skulle man snakke med hende?");
             System.out.println("Der sidder en rigtig makker nede ved et af bordene. Han vinker dig hen\n");
-            
         }
         else if (currentRoom == sidney_lee) {
             System.out.println("Sidney Lee står og smørrer sig ind i bruncreme,");
@@ -230,6 +230,7 @@ public class Game
         else {
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
+            //if statement som sætter wantToQuit = true, hvilket gør at man vinder spillet.
             if (currentRoom == hall_fame) {
                 System.out.println("Du er officielt den mest swagste person!");
                 System.out.println("Byen er deres o'høje Erik Deluxe.\n");
@@ -250,6 +251,7 @@ public class Game
         }
     }
 
+    //Printer ArrayListen inventory's indhold til skærmen.
     private void printInventory() {
         String output = "";
         for (int i = 0; i < inventory.size(); i++) {

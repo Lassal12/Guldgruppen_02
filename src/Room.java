@@ -12,6 +12,7 @@ public class Room {
 
     private String description;
     private HashMap<String, Room> exits;
+    //Vi opretter en ArrayList som kan indeholde de ting vi placere i de forskellige rum.
     ArrayList<Swag> swags = new ArrayList<Swag>();
 
     public Room(String description) {
@@ -31,6 +32,7 @@ public class Room {
         return description + ".\n" + getExitString();
     }
 
+    //Her skriver vi de ting som skal printes til skærmen ved starten af hvert rum.
     private String getExitString() {
         String returnString = "Udgange:";
         Set<String> keys = exits.keySet();
@@ -50,12 +52,12 @@ public class Room {
         return swags.get(index);
     }
 
-    //Set a specific item in a room
+    //Setter metoden bruges til at indsætte et specifikt item til rummet.
     public void setSwag(Swag newSwag){
        swags.add(newSwag);
     }
     
-    //Writing description of an item in a room
+    //Beskriver hvilke ting der er i rummet.
     public String getRoomSwags() {
         String output = "";
         for (int i = 0; i < swags.size(); i++) {
