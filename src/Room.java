@@ -36,8 +36,6 @@ public class Room {
         Set<String> keys = exits.keySet();
         for (String exit : keys) {
             returnString += " " + exit;
-            returnString += "\nSwags in the room"";"
-            returnString += getRoomSwags() + "\n";
         }
         returnString += "\nSwagting i rummet:\n";
         returnString += getRoomSwags();
