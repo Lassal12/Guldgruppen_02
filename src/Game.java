@@ -133,8 +133,13 @@ public class Game
         else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
         }
+
+        else if (commandWord == CommandWord.LOOK) {
+            printLook ();
+        }
         else if (commandWord == CommandWord.INVENTORY) {
             printInventory();
+
         }
         return wantToQuit;
     }
@@ -146,6 +151,62 @@ public class Game
         System.out.println("Dine råb om hjælp er:");
         parser.showCommands();
         System.out.println();
+    }
+    
+    private void printLook()
+    {
+        if (currentRoom == swag_city) {
+            System.out.println("Du ser en shady type hænge ud ved byskiltet");
+            System.out.println("Der ligger et par mønter på vejen");
+        }
+        else if (currentRoom == randers) {
+            System.out.println("Der ligger mokaï strøget udover det hele.");
+            System.out.println("Du ser et par fyre fikse deres knallerter");
+        }
+        else if (currentRoom == mors_hus) {
+            System.out.println("Din mor stirrer hysterisk på dig.");
+            System.out.println("Hun ser ikke ud til at kunne lide din swag");
+        }
+        else if (currentRoom == johnny_bravo) {
+            System.out.println("Du ser den mest mandlige mandemand stirre dig i øjnene");
+            System.out.println("Der ligger et par mønter, nok fra den sidste dulle han tog");
+        }
+        else if (currentRoom == michael_jackson) {
+            System.out.println("Kongen af pop lever stadig, hans død var bare fake news");
+            System.out.println("du ser et par ældgamle mønter liggende på en sten");
+        }
+        else if (currentRoom == ole_henriksen) {
+            System.out.println("Ole Henriksen står fremme i al sin fabulousness");
+            System.out.println("Han kigger nysgerrigt på dig, som en løve.");
+            System.out.println("...");
+            System.out.println("Hvis en løve var gay");            
+        }
+        else if (currentRoom == diskotekets_dør) {
+            System.out.println("Dørmanden kigger surt på dig");
+            System.out.println("Det er kun de mest swagste folk, som bliver lukket ind");
+            System.out.println("Der ligger et par mønter på gulvet");           
+        }
+        else if (currentRoom == gulddreng) {
+            System.out.println("Fanfaren af piger skriger højere end gulddreng synger");
+            System.out.println("Han ser ud til at mangle noget");            
+        }
+        else if (currentRoom == bjarne_riis) {
+            System.out.println("Du er ude på landet. Det eneste, du kan se er Bjarne Riis' skygge");
+            System.out.println("Resten af manden er allerede langt over alle bakker");
+            
+        }
+        else if (currentRoom == diskoteket) {
+            System.out.println("Der er fuckboys og duller galore");
+            System.out.println("Der sidder en lækker lille sag oppe ved baren, måske skulle man snakke med hende?");
+            System.out.println("Der sidder en rigtig makker nede ved et af bordene. Han vinker dig hen");
+            
+        }
+        else if (currentRoom == sidney_lee) {
+            
+        }
+        else if (currentRoom == hall_fame) {
+            
+        }
     }
 
     private boolean goRoom(Command command) 
