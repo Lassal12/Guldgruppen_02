@@ -158,7 +158,37 @@ public class Game
         else if (commandWord == CommandWord.INVENTORY) {
             printInventory();
         }
+        /*
+        der blevet lavet en ny kommando med Get så der kan pickes items up 
+        */
+        else if (commandWord == CommandWord.GET) {
+            getSwag(command);
+        }
         return wantToQuit;
+    }
+ 
+    /*
+    I relation med Get fukntionen skal der implementeres commandoen således at det kan fungerer inden i spillet. 
+    */
+    private void getSwag(Command command) 
+    {
+        if(!command.hasSecondWord()) {
+            System.out.println("Get what?");
+            return;
+        }
+
+        String Swag = command.getSecondWord();
+
+        Swag newSwag = currentRoom.getSwag(Swag);
+        
+        if (newSwag == null) {
+            System.out.println("  That item is not there ");
+        }
+        else {
+            inventory.add(newSwag); 
+            currentRoom.removeSwag(Swag);
+            System.out.println("Picked up" + Swag);
+        }
     }
 
     private void printHelp() 

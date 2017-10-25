@@ -65,9 +65,42 @@ public class Room {
     public Room getExit(String direction) {
         return exits.get(direction);
     }
-
+/*
+    Get item from the room 
+    */
     public Swag getSwag(int index) {
         return swags.get(index);
+        
+    }
+     /*
+    Få items fra rummet og systemet kan kende forskel på disse 2 commands ved at se om det er et string eller index
+    */
+    public Swag getSwag(String SwagName) {
+        for (int i = 0; i < swags.size(); i++) {
+            if(swags.get(i).getSwagDescription().equals(SwagName))    {
+                return swags.get(i);
+            }
+                      
+        }
+        return null;
+        
+    }
+     /*
+    Fjerner item fra rummet  
+    */
+
+    /**
+     *
+     * @param Swagname
+     */
+
+    public void removeSwag(String SwagName) {
+        for (int i = 0; i < Swag.size(); i++) {
+            if(swags.get(i).getSwagDescription().equals(SwagName))    {
+            swags.remove(i);
+            }
+                      
+        }       
     }
     
     public NPC getNPC(String name) {

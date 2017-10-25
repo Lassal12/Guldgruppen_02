@@ -1,5 +1,13 @@
 
 class Swag {
+
+    static int size() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    static Object get(int i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     String swagDescription;
     
     //Der oprettes en streng som kan indeholde navnet til items(swag) i spillet.
@@ -9,5 +17,9 @@ class Swag {
     
     public String getSwagDescription() {
         return swagDescription;
+    }
+
+    Object getDescription() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
