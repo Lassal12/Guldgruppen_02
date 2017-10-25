@@ -30,8 +30,8 @@ public class Game
     {
         swag_city = new Room("Du er ved Swag City byskiltet");
         randers = new Room("Du er ved Randers, hjemstedet for Mokaien");
-        mors_hus = new Room("Du er hjemme, hej mor");
-        gulddreng = new Room("Er du model? kom med på hotel! Du er hos Gulddrengen");
+        mors_hus = new Room("Du er hjemme ved mor");
+        gulddreng = new Room("Lyden af højt musik. Du er hos Gulddrengen");
         bjarne_riis = new Room("Så går det stærkt, du er hos Bjarne Riis");
         diskotekets_dør = new Room("Høj lyd af bass, festen venter bag diskotekets dør");
         diskoteket = new Room("BOOM BOOM WOOP WOOP PARTY PARTY, du er på diskoteket");
@@ -85,6 +85,16 @@ public class Game
         gulddreng.setSwag(new Swag("Guldkæden\n"));
         bjarne_riis.setSwag(new Swag("Hurtig briller\n"));
         ole_henriksen.setSwag(new Swag("Fabulous tøj\n"));
+        
+        //NPC'er indsættes i de forskellige rum.
+        johnny_bravo.setNPC("Johnny Bravo", "HU HA HI, Johnny Bravo!");
+        michael_jackson.setNPC("Michael Jackson", "\u266A\u266A\u266A Annie are you ok? Are you ok, Annie...\u266A\u266A\u266A");
+        gulddreng.setNPC("Gulddreng", "\u266A\u266A\u266A Er du model? Vil du med på hotel? \u266A\u266A\u266A");
+        bjarne_riis.setNPC("Bjarne Riis", "Cykle, cykle, cykle. Ikke tænk på EPO!");
+        ole_henriksen.setNPC("Ole Henriksen", "I'm sooo fabolous.");
+        mors_hus.setNPC("Mor", "Velkommen hjem søn!");
+        sidney_lee.setNPC("Sidney Lee", "Jeg er forlækker til love!");
+        diskotekets_dør.setNPC("Dørmand", "Holdt holdt holdt! Ingen adgang på diskuteket med en så lav swag-promille.");
     }
 
     public void play() 
@@ -153,7 +163,7 @@ public class Game
 
     private void printHelp() 
     {
-        System.out.println("\nDu helt væk, mokaiens dunst sværmer omkring dig.");
+        System.out.println("Du helt væk, mokaiens dunst sværmer omkring dig.");
         System.out.println("Tag dig sammen.");
         System.out.println("Dine råb om hjælp er:");
         parser.showCommands();
@@ -192,7 +202,7 @@ public class Game
         else if (currentRoom == diskotekets_dør) {
             System.out.println("Dørmanden kigger surt på dig");
             System.out.println("Det er kun de mest swagste folk, som bliver lukket ind");
-            System.out.println("Der ligger et par mønter på gulvet\n");           
+            System.out.println("Der ligger et par mønter på jorden\n");           
         }
         else if (currentRoom == gulddreng) {
             System.out.println("Fanfaren af piger skriger højere end gulddreng synger");
@@ -216,7 +226,8 @@ public class Game
     private boolean goRoom(Command command) 
     {
         if(!command.hasSecondWord()) {
-            System.out.println("Hvor vil du hen Erik?\n");
+            System.out.println("Hvor vil du hen Erik?");
+            System.out.println(currentRoom.getMediumDescription() + "\n");
             return false;
         }
 

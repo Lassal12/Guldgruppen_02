@@ -14,10 +14,13 @@ public class Room {
     private HashMap<String, Room> exits;
     //Vi opretter en ArrayList som kan indeholde de ting vi placere i de forskellige rum.
     ArrayList<Swag> swags = new ArrayList<Swag>();
+    //Vi opretter et HashMap som kan indeholde npc'er som skal være i de forskellige rum.
+    private HashMap<String, NPC> characters;
 
     public Room(String description) {
         this.description = description;
         exits = new HashMap<String, Room>();
+        characters = new HashMap<String, NPC>();
     }
 
     public void setExit(String direction, Room neighbor) {
@@ -31,16 +34,31 @@ public class Room {
     public String getLongDescription() {
         return description + ".\n" + getExitString();
     }
+    
+    public String getMediumDescription() {
+        return getExitStringToGo();
+    }
 
     //Her skriver vi de ting som skal printes til skærmen ved starten af hvert rum.
     private String getExitString() {
+        String returnString = "\nUdgange:";
+        Set<String> keys = exits.keySet();
+        for (String exit : keys) {
+            returnString += " " + exit;
+        }
+        returnString += "\n\nNPC'er i rummet:\n";
+        returnString += getNPCString();
+        returnString += "\nSwagting i rummet:\n";
+        returnString += getRoomSwags();
+        return returnString;
+    }
+    
+    private String getExitStringToGo() {
         String returnString = "Udgange:";
         Set<String> keys = exits.keySet();
         for (String exit : keys) {
             returnString += " " + exit;
         }
-        returnString += "\nSwagting i rummet:\n";
-        returnString += getRoomSwags();
         return returnString;
     }
 
@@ -51,18 +69,47 @@ public class Room {
     public Swag getSwag(int index) {
         return swags.get(index);
     }
+    
+    public NPC getNPC(String name) {
+        return characters.get(name);
+    }
 
     //Setter metoden bruges til at indsætte et specifikt item til rummet.
     public void setSwag(Swag newSwag){
        swags.add(newSwag);
     }
     
+    //Setter motoden bruges til at indsætte en specifik npc i rummet.
+    public void setNPC(String name, String description) {
+        characters.put(name, new NPC(name, description));
+    }
+    
     //Beskriver hvilke ting der er i rummet.
     public String getRoomSwags() {
         String output = "";
+        if(!swags.isEmpty()) {
         for (int i = 0; i < swags.size(); i++) {
             output += swags.get(i).getSwagDescription() + " ";
         }
         return output;
+        }
+        else {
+            return output + "Ingen swagting!\n";
+        }
+    }
+    
+    //Beskriver hvilke npc'er der er i rummet.
+    public String getNPCString() {
+        String charactersString = "";
+        if(!characters.isEmpty()) {
+            Set<String> npcNames = characters.keySet();
+            for(String npcName : npcNames) {
+                charactersString += getNPC(npcName).getGreeting();
+            }
+            return charactersString;
+        }
+        else {
+            return charactersString + "Ingen NPC'er!\n";
+        }
     }
 }
