@@ -93,10 +93,16 @@ public class Game
         bjarne_riis.setNPC("Bjarne Riis", "Cykle, cykle, cykle. Ikke tænk på EPO!");
         ole_henriksen.setNPC("Ole Henriksen", "I'm sooo fabolous.");
         mors_hus.setNPC("Mor", "Velkommen hjem søn!");
-        sidney_lee.setNPC("Sidney Lee", "Jeg er forlækker til love!");
-        diskotekets_dør.setNPC("Dørmand", "Holdt holdt holdt! Ingen adgang på diskuteket med en så lav swag-promille.");
+        sidney_lee.setNPC("Sidney Lee", "Jeg er for lækker til love!");
+        diskotekets_dør.setNPC("Dørmand", "Holdt holdt holdt! Ingen adgang på diskoteket med en så lav swag-promille.");
+        
+        //døren til diskoteket låses, samt der skabes en condition for at låse døren op
+        diskotekets_dør.lockExit("north", true);
+        if (inventory.size() >2 ){
+             diskotekets_dør.lockExit("north", false);
+             System.out.println("Swaggen oser ud af dig! Du er nu klar til diskoteket/n");
+         }
     }
-
     public void play() 
     {            
         printWelcome();
@@ -173,7 +179,7 @@ public class Game
     /*
     I relation med Get fukntionen skal der implementeres commandoen således at det kan fungerer inden i spillet. 
     */
-    private void getSwag(Command command) 
+    public void getSwag(Command command) 
     {
         if(!command.hasSecondWord()) {
             System.out.println("Get what?");
@@ -271,6 +277,9 @@ public class Game
         if (nextRoom == null) {
             System.out.println("Bum! Du løb ind i en væg, drink noget mindre\n");
         }
+        else if (currentRoom.isLocked(direction)){
+            System.out.println("Du skal have mere swag for at komme igennem!");
+        }
         else {
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
@@ -296,7 +305,7 @@ public class Game
     }
 
     //Printer ArrayListen inventory's indhold til skærmen.
-    private void printInventory() {
+    public void printInventory() {
         String output = "";
         for (int i = 0; i < inventory.size(); i++) {
             output += inventory.get(i).getSwagDescription() + " ";
@@ -339,5 +348,6 @@ public class Game
         else {
             System.out.println("Hvem prøver du at kontakte?\n");
         }
+        
     }
 }
