@@ -164,6 +164,9 @@ public class Game
         else if (commandWord == CommandWord.GET) {
             getSwag(command);
         }
+        else if (commandWord == CommandWord.INTERACT) {
+            interactNPC(command);
+        }
         return wantToQuit;
     }
  
@@ -194,7 +197,7 @@ public class Game
     private void printHelp() 
     {
         System.out.println("Du helt væk, mokaiens dunst sværmer omkring dig.");
-        System.out.println("Tag dig sammen.");
+        System.out.println("Tag dig sammen.\n");
         System.out.println("Dine råb om hjælp er:");
         parser.showCommands();
         System.out.println();
@@ -300,5 +303,41 @@ public class Game
         }
         System.out.println("Dine swagting:");
         System.out.println(output);
+    }
+    
+    private void interactNPC(Command command) {
+        if(!command.hasSecondWord()) {
+          System.out.println("Hvem prøver du at kontakte?\n");
+        }
+        else if (currentRoom == johnny_bravo) {
+            // && command.checkSecondWord("johnny bravo")
+            //if (command.checkSecondWord("johnny bravo")) {
+            System.out.println("jb");
+            //}
+        }
+        else if (currentRoom == michael_jackson) {
+            System.out.println("mj");
+        }
+        else if (currentRoom == gulddreng) {
+            System.out.println("gd");
+        }
+        else if (currentRoom == bjarne_riis) {
+            System.out.println("br");
+        }
+        else if (currentRoom == ole_henriksen) {
+            System.out.println("oh");
+        }
+        else if (currentRoom == mors_hus) {
+            System.out.println("mor");
+        }
+        else if (currentRoom == sidney_lee) {
+            System.out.println("sl");
+        }
+        else if (currentRoom == diskotekets_dør) {
+            System.out.println("dørmand");
+        }
+        else {
+            System.out.println("Hvem prøver du at kontakte?\n");
+        }
     }
 }
