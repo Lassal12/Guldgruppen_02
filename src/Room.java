@@ -41,15 +41,16 @@ public class Room {
 
     //Her skriver vi de ting som skal printes til skærmen ved starten af hvert rum.
     private String getExitString() {
-        String returnString = "\nUdgange:";
+        String returnString = "\nNPC'er i rummet:\n";
+        returnString += getNPCString();
+        returnString += "\nSwagting i rummet:\n";
+        returnString += getRoomSwags();
+        returnString += "\nUdgange:";
         Set<String> keys = exits.keySet();
         for (String exit : keys) {
             returnString += " " + exit;
         }
-        returnString += "\n\nNPC'er i rummet:\n";
-        returnString += getNPCString();
-        returnString += "\nSwagting i rummet:\n";
-        returnString += getRoomSwags();
+        returnString += "\n";
         return returnString;
     }
     
