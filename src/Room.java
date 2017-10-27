@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashMap;
@@ -12,11 +11,13 @@ public class Room {
 
     private String description;
     private HashMap<String, Room> exits;
+
     //Vi opretter en ArrayList som kan indeholde de ting vi placere i de forskellige rum.
     ArrayList<Swag> swags = new ArrayList<Swag>();
     //Vi opretter et HashMap som kan indeholde npc'er som skal være i de forskellige rum.
     private HashMap<String, NPC> characters;
     private HashMap<String, Boolean> exitsLock;
+    ArrayList<Swag> Swags = new ArrayList<Swag>();
 
     public Room(String description) {
         this.description = description;
@@ -81,6 +82,7 @@ public class Room {
     public Room getExit(String direction) {
         return exits.get(direction);
     }
+
 /*
     Get item from the room 
     */
@@ -98,12 +100,31 @@ public class Room {
             }
                       
         }
-        return null;
-        
+        return null;      
     }
      /*
     Fjerner item fra rummet  
     */
+     public Swag getSwag(int index){
+            return Swags.get(index);
+    }
+    /*
+    Set a specific item in a room   
+    */
+    public void setSwag(Swag newSwag){
+       Swag.add(newSwag);
+    }
+    /*
+    Writing description of an item in a room
+    */
+    public String getRoomSwags() {
+        String output = "";
+        for (int i = 0; i < Swags.size(); i++) {
+            output += Swags.get(i).getSwagDescription() + " ";
+        }
+             return output;
+        }
+    }
 
     /**
      *
