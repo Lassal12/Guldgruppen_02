@@ -83,6 +83,7 @@ public class Game
         johnny_bravo.setSwag(new Swag("Bravo håret"));
         johnny_bravo.setSwag(new Swag("Guldmønter"));
         michael_jackson.setSwag(new Swag("Guld sko"));
+        michael_jackson.setSwag(new Swag("Guldmønter"));
         gulddreng.setSwag(new Swag("Guldkæden"));
         bjarne_riis.setSwag(new Swag("Hurtig briller"));
         ole_henriksen.setSwag(new Swag("Fabulous tøj"));
