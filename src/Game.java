@@ -308,7 +308,7 @@ public class Game
         if(!command.hasSecondWord()) {
           System.out.println("Hvem prøver du at kontakte?\n");
         }
-        else if (currentRoom == johnny_bravo) {
+        else if (currentRoom == johnny_bravo && command.checkSecondWord("johnny bravo").equalsIgnoreCase("johnny bravo")) {
             // && command.checkSecondWord("johnny bravo")
             //if (command.checkSecondWord("johnny bravo")) {
             System.out.println("jb");
