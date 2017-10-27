@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashMap;
@@ -11,36 +12,19 @@ public class Room {
 
     private String description;
     private HashMap<String, Room> exits;
-
     //Vi opretter en ArrayList som kan indeholde de ting vi placere i de forskellige rum.
     ArrayList<Swag> swags = new ArrayList<Swag>();
     //Vi opretter et HashMap som kan indeholde npc'er som skal være i de forskellige rum.
     private HashMap<String, NPC> characters;
-    private HashMap<String, Boolean> exitsLock;
-    ArrayList<Swag> Swags = new ArrayList<Swag>();
 
     public Room(String description) {
         this.description = description;
         exits = new HashMap<String, Room>();
         characters = new HashMap<String, NPC>();
-        exitsLock = new HashMap<String, Boolean>();
     }
-    public boolean isLocked(String direction){
-        if (direction!= null)
-            return exitsLock.get(direction).booleanValue();
-        else
-            return false;
-        //returnerer om et rum er låst eller ej, sætter true hvis døren er låst, false hvis åben
-    }
-    public void lockExit(String direction, boolean condition){
-        exitsLock.put(direction, condition);
-    //låser eller ulåser en exit, sætter retningen, true hvis vejen skal være låst, false hvis ulåst
-    }
-    
+
     public void setExit(String direction, Room neighbor) {
         exits.put(direction, neighbor);
-        exitsLock.put(direction, false);
-        //sætter naboen og retningen, som den er mod.
     }
 
     public String getShortDescription() {
@@ -82,7 +66,6 @@ public class Room {
     public Room getExit(String direction) {
         return exits.get(direction);
     }
-
 /*
     Get item from the room 
     */
@@ -100,31 +83,12 @@ public class Room {
             }
                       
         }
-        return null;      
+        return null;
+        
     }
      /*
     Fjerner item fra rummet  
     */
-     public Swag getSwag(int index){
-            return Swags.get(index);
-    }
-    /*
-    Set a specific item in a room   
-    */
-    public void setSwag(Swag newSwag){
-       Swag.add(newSwag);
-    }
-    /*
-    Writing description of an item in a room
-    */
-    public String getRoomSwags() {
-        String output = "";
-        for (int i = 0; i < Swags.size(); i++) {
-            output += Swags.get(i).getSwagDescription() + " ";
-        }
-             return output;
-        }
-    }
 
     /**
      *
