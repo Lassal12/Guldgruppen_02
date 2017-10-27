@@ -1,8 +1,10 @@
 
 class Swag {
 
-    static int size() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+   
+    @Override
+    public String toString() {
+        return "Swag{" + "swagDescription=" + swagDescription + '}';
     }
 
     static Object get(int i) {

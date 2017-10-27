@@ -77,14 +77,14 @@ public class Game
 
         currentRoom = swag_city;
         
-        inventory.add(new Swag("Swag håndtegn\n"));
+        inventory.add(new Swag("Swag håndtegn"));
         
         //Swag tingene indsættes i de forskellige rum.
-        johnny_bravo.setSwag(new Swag("Bravo håret\n"));
-        michael_jackson.setSwag(new Swag("Guld sko\n"));
-        gulddreng.setSwag(new Swag("Guldkæden\n"));
-        bjarne_riis.setSwag(new Swag("Hurtig briller\n"));
-        ole_henriksen.setSwag(new Swag("Fabulous tøj\n"));
+        johnny_bravo.setSwag(new Swag("Bravo håret"));
+        michael_jackson.setSwag(new Swag("Guld sko"));
+        gulddreng.setSwag(new Swag("Guldkæden"));
+        bjarne_riis.setSwag(new Swag("Hurtig briller"));
+        ole_henriksen.setSwag(new Swag("Fabulous tøj"));
         
         //NPC'er indsættes i de forskellige rum.
         johnny_bravo.setNPC("Johnny Bravo", "HU HA HI, Johnny Bravo!");
@@ -181,7 +181,6 @@ public class Game
         }
 
         String Swag = command.getSecondWord();
-
         Swag newSwag = currentRoom.getSwag(Swag);
         
         if (newSwag == null) {
